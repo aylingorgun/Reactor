@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public Rigidbody2D bullet;
-    public Transform FirePoint;
+    public GameObject bullet;
+    public float speed = 100;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        FirePoint = FirePoint.transform;
-    }
+    public static int damage = 1;
 
     private void FixedUpdate()
     {
@@ -22,6 +18,8 @@ public class Gun : MonoBehaviour
     }
 
     void Fire(){
-        Instantiate(bullet, FirePoint.position, Quaternion.identity);
+        GameObject insBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+        Rigidbody insBulletRigid = insBullet.GetComponent<Rigidbody>();
+        insBulletRigid.AddForce(Vector3.forward * speed);
     }
 }

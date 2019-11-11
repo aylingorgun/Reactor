@@ -7,10 +7,10 @@ public class Health : MonoBehaviour
 {
     public Text text;
     int lives;
-    // Start is called before the first frame update
+ 
     void Start()
     {
-        lives = 1;
+        lives = Random.Range(0,10);
         text.text = lives.ToString();
     }
 
@@ -18,15 +18,29 @@ public class Health : MonoBehaviour
     void Update()
     {
         text.text = lives.ToString();
+
+        createNewOne();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void createNewOne()
+    {
+        if(lives <= 0)
+        {
+            //Destroy(gameObject);
+            lives = Random.Range(0, 10);
+            text.text = lives.ToString();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("dfs");
-            //Destroy(collision.gameObject);
-            lives--;
+            // Destroy(collision.gameObject);
+            Bullet.Stick();
+            collision.gameObject.transform.parent = this.gameObject.transform;
+            lives -= Gun.damage;
+            Score.scoreIncrement();
         }
     }
 }
