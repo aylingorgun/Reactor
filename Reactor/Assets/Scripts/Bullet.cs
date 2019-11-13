@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -23,5 +24,13 @@ public class Bullet : MonoBehaviour
     public static void Stick()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

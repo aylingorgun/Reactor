@@ -7,13 +7,22 @@ public class Gun : MonoBehaviour
     public GameObject bullet;
     public float speed = 100;
 
+    public float DelayBetweenThrows = .00001f;
+    float lastThrowDate;
+
     public static int damage = 1;
+
+    private void Start()
+    {
+        lastThrowDate = Time.time;
+    }
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if ((Time.time - lastThrowDate > DelayBetweenThrows) && Input.GetMouseButtonDown(0))
         {
             Fire();
+            lastThrowDate = Time.time + DelayBetweenThrows;
         }
     }
 
