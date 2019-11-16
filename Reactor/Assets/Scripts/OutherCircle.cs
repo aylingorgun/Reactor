@@ -16,4 +16,12 @@ public class OutherCircle : MonoBehaviour
     {
         transform.Rotate(0, 0, degree * Time.deltaTime); //rotates 50 degrees per second around z axis
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }

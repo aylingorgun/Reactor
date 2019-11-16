@@ -8,25 +8,26 @@ public class Bullet : MonoBehaviour
     public float velY = 5f;
     float velX = 0f;
 
-    public static Rigidbody rb;
+    public static Rigidbody2D rb;
     
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(velX, velY); 
+        if(rb != null)
+            rb.velocity = new Vector2(velX, velY); 
     }
 
     public static void Stick()
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {

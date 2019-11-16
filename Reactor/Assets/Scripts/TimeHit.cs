@@ -6,12 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class TimeHit : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    public SpriteRenderer m_SpriteRenderer;
+
+    private void Start()
     {
-        if (collision.gameObject.tag == "Bullet")
-        {            
+        m_SpriteRenderer.color = Color.yellow;
+    }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.tag == "Bullet") && collision != null)
+        {
+            StartCoroutine("Colors");
             Destroy(collision.gameObject);
             Timer.timeLeft += 10f;
         }
+    }
+
+    IEnumerator Colors()
+    {
+        m_SpriteRenderer.color = Color.blue;
+        yield return new WaitForSeconds(.5f);
+        m_SpriteRenderer.color = Color.yellow;
     }
 }

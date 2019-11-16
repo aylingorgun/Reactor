@@ -10,37 +10,45 @@ public class Health : MonoBehaviour
  
     void Start()
     {
-        lives = Random.Range(0,10);
+        lives = Random.Range(0,7);
         text.text = lives.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
         text.text = lives.ToString();
-
         createNewOne();
+
     }
 
     void createNewOne()
     {
         if(lives <= 0)
         {
-            //Destroy(gameObject);
-            lives = Random.Range(0, 10);
+            lives = Random.Range(0, 7);
             text.text = lives.ToString();
+            Score.scoreIncrement();
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
+    List<GameObject> go = new List<GameObject>();
+    void OnCollisionEnter2D(Collision2D collision)
+    {    
+        if ((collision.gameObject.tag == "Bullet") && collision != null)
         {
-            // Destroy(collision.gameObject);
+            go.Add(collision.gameObject);
+
             Bullet.Stick();
             collision.gameObject.transform.parent = this.gameObject.transform;
             lives -= Gun.damage;
-            Score.scoreIncrement();
+            
+            if(lives <= 0)
+            {
+                foreach (GameObject i in go)
+                {
+                    Destroy(i);
+                }
+            }
         }
     }
 }

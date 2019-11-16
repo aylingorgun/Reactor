@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject bullet;
+    public Rigidbody2D bullet;
     public float speed = 100;
 
-    public float DelayBetweenThrows = .00001f;
+    public float DelayBetweenThrows = 0;
     float lastThrowDate;
 
     public static int damage = 1;
@@ -27,8 +27,10 @@ public class Gun : MonoBehaviour
     }
 
     void Fire(){
-        GameObject insBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-        Rigidbody insBulletRigid = insBullet.GetComponent<Rigidbody>();
-        insBulletRigid.AddForce(Vector3.forward * speed);
+        Rigidbody2D bulletInstance = Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0, 0, 1))) as Rigidbody2D;
+        bulletInstance.AddForce(transform.forward * speed);
+
+        //bulletInstance.velocity = transform.forward * maxSpeed;
+        // Physics2D.IgnoreCollision(bulletInstance.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 }
