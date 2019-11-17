@@ -831,7 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 206577659023043846, guid: 22f04271f710299459e34aabc04fd7a4, type: 3}
   speed: 8
-  DelayBetweenThrows: 0
+  DelayBetweenThrows: 0.08
 --- !u!1 &631893575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89e612b54d51be4bbbb71387016e4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degree: 60
+  degree: 50
 --- !u!212 &1724741052
 SpriteRenderer:
   m_ObjectHideFlags: 0

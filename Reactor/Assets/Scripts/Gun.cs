@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((Time.time - lastThrowDate > DelayBetweenThrows) && Input.GetMouseButtonDown(0))
+        if ((Time.time - lastThrowDate > DelayBetweenThrows) && Input.GetMouseButton(0))
         {
             Fire();
             lastThrowDate = Time.time + DelayBetweenThrows;
