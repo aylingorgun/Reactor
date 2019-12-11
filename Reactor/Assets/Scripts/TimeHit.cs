@@ -20,7 +20,7 @@ public class TimeHit : MonoBehaviour
         {
             StartCoroutine("Colors");
             Destroy(collision.gameObject);
-            Timer.timeLeft += 10f;
+            Timer.timeLeft += 1f;
         }
     }
 

@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI tmp;
-    public static float timeLeft = 60.0f;
+    public static float timeLeft = 30.0f;
     // Start is called before the first frame update
     void Start()
     {
-        timeLeft = 60.0f;
+        timeLeft = 30.0f;
         tmp.text = timeLeft.ToString("f0");
 
     }
@@ -24,7 +24,9 @@ public class Timer : MonoBehaviour
         
         if (timeLeft <= 0)
         {
-            SceneManager.LoadScene(0);
+            GameOver.gameOverTime = true;
+            timeLeft = 0;
+            //SceneManager.LoadScene(0);
         }
     }
 }

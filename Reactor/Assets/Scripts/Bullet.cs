@@ -7,12 +7,13 @@ public class Bullet : MonoBehaviour
 {
     public float velY = 5f;
     float velX = 0f;
-
+    
     public static Rigidbody2D rb;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(Blink(2, 0.01f, .04f));
     }
 
     // Update is called once per frame
@@ -31,7 +32,25 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            SceneManager.LoadScene(0);
+            GameOver.gameOverHit = true;
+            //goPanel.SetActive(true);
+            //SceneManager.LoadScene(0);
         }
+    }
+
+    IEnumerator Blink(int nTimes, float timeOn, float timeOff)
+    {
+        while (nTimes > 0)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(timeOn);
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(timeOff);
+            nTimes--;
+        }
+
+
+        GetComponent<Renderer>().enabled = true;
+
     }
 }

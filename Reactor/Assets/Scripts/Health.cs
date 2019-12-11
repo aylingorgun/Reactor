@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
  
     void Start()
     {
-        lives = Random.Range(0,7);
+        lives = Random.Range(5,11);
         text.text = lives.ToString();
     }
 
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
     {
         if(lives <= 0)
         {
-            lives = Random.Range(0, 7);
+            lives = Random.Range(5, 11);
             text.text = lives.ToString();
             Score.scoreIncrement();
         }
@@ -46,6 +46,7 @@ public class Health : MonoBehaviour
             {
                 foreach (GameObject i in go)
                 {
+
                     Destroy(i);
                 }
             }
